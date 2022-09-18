@@ -1,20 +1,15 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import getRandomImage from "../utils/getRandomImage";
 import { ethers } from "ethers";
-import connectContract from "../utils/connectContract";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 import Alert from "../components/Alert";
-
+import connectContract from "../utils/connectContract";
+import getRandomImage from "../utils/getRandomImage";
 
 export default function CreateEvent() {
   const { data: account } = useAccount();
-  const [success, setSuccess] = useState(null);
-  const [message, setMessage] = useState(null);
-  const [loading, setLoading] = useState(null);
-  const [eventID, setEventID] = useState(null);
 
   const [eventName, setEventName] = useState("");
   const [eventDate, setEventDate] = useState("");
@@ -23,16 +18,53 @@ export default function CreateEvent() {
   const [refund, setRefund] = useState("");
   const [eventLink, setEventLink] = useState("");
   const [eventDescription, setEventDescription] = useState("");
+
+  const [success, setSuccess] = useState(null);
+  const [message, setMessage] = useState(null);
+  const [loading, setLoading] = useState(null);
+  const [eventID, setEventID] = useState(null);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const body = {
+      name: eventName,
+      description: eventDescription,
+      link: eventLink,
+      image: getRandomImage(),
+    };
+
+    try {
+      const response = await fetch("/api/store-event-data", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (response.status !== 200) {
+        alert("Oops! Something went wrong. Please refresh and try again.");
+      } else {
+        console.log("Form successfully submitted!");
+        let responseJSON = await response.json();
+        await createEvent(responseJSON.cid);
+      }
+      // check response, if success is false, dont take them to success page
+    } catch (error) {
+      alert(
+        `Oops! Something went wrong. Please refresh and try again. Error ${error}`
+      );
+    }
+  }
+
   const createEvent = async (cid) => {
     try {
       const rsvpContract = connectContract();
-  
+
       if (rsvpContract) {
         let deposit = ethers.utils.parseEther(refund);
         let eventDateAndTime = new Date(`${eventDate} ${eventTime}`);
         let eventTimestamp = eventDateAndTime.getTime();
         let eventDataCID = cid;
-  
+
         const txn = await rsvpContract.createNewEvent(
           eventTimestamp,
           deposit,
@@ -40,16 +72,16 @@ export default function CreateEvent() {
           eventDataCID,
           { gasLimit: 900000 }
         );
+
         setLoading(true);
         console.log("Minting...", txn.hash);
         let wait = await txn.wait();
         console.log("Minted -- ", txn.hash);
+
         setEventID(wait.events[0].args[0]);
         setSuccess(true);
         setLoading(false);
         setMessage("Your event has been created successfully.");
-        console.log("Minting...", txn.hash);
-        console.log("Minted -- ", txn.hash);
       } else {
         console.log("Error getting contract.");
       }
@@ -60,48 +92,6 @@ export default function CreateEvent() {
       console.log(error);
     }
   };
-
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const body = {
-      name: eventName,
-      description: eventDescription,
-      link: eventLink,
-      image: getRandomImage(),
-    };
-    console.log("Form submitted")
-    async function handleSubmit(e) {
-      e.preventDefault();
-    
-      const body = {
-        name: eventName,
-        description: eventDescription,
-        link: eventLink,
-        image: getRandomImage(),
-      };
-    
-      try {
-        const response = await fetch("/api/store-event-data", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        });
-        if (response.status !== 200) {
-          alert("Oops! Something went wrong. Please refresh and try again.");
-        } else {
-          console.log("Form successfully submitted!");
-          let responseJSON = await response.json();
-          await createEvent(responseJSON.cid);
-        }
-        // check response, if success is false, dont take them to success page
-      } catch (error) {
-        alert(
-          `Oops! Something went wrong. Please refresh and try again. Error ${error}`
-        );
-      }
-    }
-  }
 
   useEffect(() => {
     // disable scroll on <input> elements of type number
