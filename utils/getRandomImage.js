@@ -1,9 +1,9 @@
 let nextImages = [
-  "/candyland.png",
-  "/mojito.png",
-  "/rainbow.png",
-  "/santorini.png",
-  "/summer.png",
+  "images/candyland.png",
+  "images/mojito.png",
+  "images/rainbow.png",
+  "images/santorini.png",
+  "images/summer.png",
 ];
 
 function getRandomImage() {

@@ -25,26 +25,26 @@ export default function Navmenu({ account, disconnect }) {
             <Menu.Item>
               {({ account }) => (
                 <a
-                  href={`/my-rsvps/upcoming`}
+                  href={`/my-credentials/active`}
                   className={joinClassNames(
                     account ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm"
                   )}
                 >
-                  My RSVPs
+                  My Credentials
                 </a>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ account }) => (
                 <a
-                  href={`/my-events/upcoming`}
+                  href={`/my-uploaded/active`}
                   className={joinClassNames(
                     account ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm"
                   )}
                 >
-                  My Events
+                  Uploaded Credentials
                 </a>
               )}
             </Menu.Item>

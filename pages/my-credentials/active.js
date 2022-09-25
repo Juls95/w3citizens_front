@@ -32,19 +32,19 @@ export default function MyUpcomingRSVPs() {
 
   if (loading)
     return (
-      <Dashboard page="rsvps" isUpcoming={true}>
+      <Dashboard page="credentials" isUpcoming={true}>
         <p>Loading...</p>
       </Dashboard>
     );
   if (error)
     return (
-      <Dashboard page="rsvps" isUpcoming={true}>
+      <Dashboard page="credentials" isUpcoming={true}>
         <p>`Error! ${error.message}`</p>
       </Dashboard>
     );
 
   return (
-    <Dashboard page="rsvps" isUpcoming={true}>
+    <Dashboard page="credentials" isUpcoming={true}>
       {account ? (
         <div>
           {data && !data.account && <p>No upcoming RSVPs found</p>}

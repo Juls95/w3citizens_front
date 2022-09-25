@@ -1,9 +1,9 @@
-import abiJSON from "./Web3RSVP.json";
+import abiJSON from "./w3citizens.json";
 import { ethers } from "ethers";
 
 function connectContract() {
     //Note: Your contractAddress will start with 0x, delete everything between the quotes and paste your contract address.
-    const contractAddress = "0xdCC168A986Cc78564701B4Da507fc579e363f6A7";
+    const contractAddress = "0xb5762De8A23f81F9FfF7494d5183f970895EeC77";
     const contractABI = abiJSON.abi;
     let rsvpContract;
     try {

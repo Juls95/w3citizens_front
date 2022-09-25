@@ -35,19 +35,19 @@ export default function MyUpcomingEvents() {
 
   if (loading)
     return (
-      <Dashboard page="events" isUpcoming={true}>
+      <Dashboard page="uploaded" isUpcoming={true}>
         <p>Loading...</p>
       </Dashboard>
     );
   if (error)
     return (
-      <Dashboard page="events" isUpcoming={true}>
+      <Dashboard page="uploaded" isUpcoming={true}>
         <p>`Error! ${error.message}`</p>
       </Dashboard>
     );
 
   return (
-    <Dashboard page="events" isUpcoming={true}>
+    <Dashboard page="uploaded" isUpcoming={true}>
       {account ? (
         <div>
           {data && data.events.length == 0 && <p>No upcoming events found</p>}

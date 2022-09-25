@@ -81,7 +81,7 @@ export default function CreateEvent() {
         setEventID(wait.events[0].args[0]);
         setSuccess(true);
         setLoading(false);
-        setMessage("Your event has been created successfully.");
+        setMessage("The credential has been uploaded successfully.");
       } else {
         console.log("Error getting contract.");
       }
@@ -138,7 +138,7 @@ export default function CreateEvent() {
         )}
         {!success && (
           <h1 className="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl md:text-5xl mb-4">
-            Create your virtual event
+            Upload Credentials
           </h1>
         )}
         {account && !success && (
@@ -152,7 +152,7 @@ export default function CreateEvent() {
                   htmlFor="eventname"
                   className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                 >
-                  Event name
+                  Credential name
                 </label>
                 <div className="mt-1 sm:mt-0 sm:col-span-2">
                   <input
@@ -174,7 +174,7 @@ export default function CreateEvent() {
                 >
                   Date & time
                   <p className="mt-1 max-w-2xl text-sm text-gray-400">
-                    Your event date and time
+                    Credential expiration day
                   </p>
                 </label>
                 <div className="mt-1 sm:mt-0 flex flex-wrap sm:flex-nowrap gap-2">
@@ -208,9 +208,9 @@ export default function CreateEvent() {
                   htmlFor="max-capacity"
                   className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                 >
-                  Max capacity
+                  Credential ID
                   <p className="mt-1 max-w-2xl text-sm text-gray-400">
-                    Limit the number of spots available for your event.
+                    Describe your credential ID
                   </p>
                 </label>
                 <div className="mt-1 sm:mt-0 sm:col-span-2">
@@ -232,10 +232,9 @@ export default function CreateEvent() {
                   htmlFor="refundable-deposit"
                   className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                 >
-                  Refundable deposit
+                  Price
                   <p className="mt-1 max-w-2xl text-sm text-gray-400">
-                    Require a refundable deposit (in MATIC) to reserve one spot
-                    at your event
+                    Credential cost
                   </p>
                 </label>
                 <div className="mt-1 sm:mt-0 sm:col-span-2">
@@ -259,9 +258,9 @@ export default function CreateEvent() {
                   htmlFor="event-link"
                   className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                 >
-                  Event link
+                  Image ID
                   <p className="mt-1 max-w-2xl text-sm text-gray-400">
-                    The link for your virtual event
+                    ID to validated file
                   </p>
                 </label>
                 <div className="mt-1 sm:mt-0 sm:col-span-2">
@@ -281,9 +280,9 @@ export default function CreateEvent() {
                   htmlFor="about"
                   className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                 >
-                  Event description
+                  Credential description
                   <p className="mt-2 text-sm text-gray-400">
-                    Let people know what your event is about!
+                    Let people know what your credential is used for.
                   </p>
                 </label>
                 <div className="mt-1 sm:mt-0 sm:col-span-2">
@@ -309,7 +308,7 @@ export default function CreateEvent() {
                   type="submit"
                   className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  Create
+                  Submit
                 </button>
               </div>
             </div>
@@ -317,7 +316,7 @@ export default function CreateEvent() {
         )}
         {success && eventID && (
           <div>
-            Success! Please wait a few minutes, then check out your event page{" "}
+            Success! Please wait a few minutes, then check out your uploaded credentials page{" "}
             <span className="font-bold">
               <Link href={`/event/${eventID}`}>here</Link>
             </span>
@@ -325,7 +324,7 @@ export default function CreateEvent() {
         )}
         {!account && (
           <section className="flex flex-col items-start py-8">
-            <p className="mb-4">Please connect your wallet to create events.</p>
+            <p className="mb-4">Please connect your wallet to create credentials.</p>
             <ConnectButton />
           </section>
         )}

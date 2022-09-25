@@ -52,7 +52,7 @@ function Event({ event }) {
         console.log("Minted -- ", txn.hash);
         setSuccess(true);
         setLoading(false);
-        setMessage("Your RSVP has been created successfully.");
+        setMessage("Your Claim has been created successfully.");
       } else {
         console.log("Error getting contract.");
       }
@@ -67,7 +67,7 @@ function Event({ event }) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <Head>
-        <title>{event.name} | web3rsvp</title>
+        <title>{event.name} | W3Citizens </title>
         <meta name="description" content={event.name} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -115,17 +115,8 @@ function Event({ event }) {
                 checkIfAlreadyRSVPed() ? (
                   <>
                     <span className="w-full text-center px-6 py-3 text-base font-medium rounded-full text-teal-800 bg-teal-100">
-                      You have RSVPed! 🙌
+                      You have claimed your ID! 🙌
                     </span>
-                    <div className="flex item-center">
-                      <LinkIcon className="w-6 mr-2 text-indigo-800" />
-                      <a
-                        className="text-indigo-800 truncate hover:underline"
-                        href={event.link}
-                      >
-                        {event.link}
-                      </a>
-                    </div>
                   </>
                 ) : (
                   <button
@@ -133,7 +124,7 @@ function Event({ event }) {
                     className="w-full items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     onClick={newRSVP}
                   >
-                    RSVP for {ethers.utils.formatEther(event.deposit)} MATIC
+                    CLAIM for {ethers.utils.formatEther(event.deposit)} MATIC
                   </button>
                 )
               ) : (
@@ -144,20 +135,15 @@ function Event({ event }) {
                 Event has ended
               </span>
             )}
-            <div className="flex item-center">
-              <UsersIcon className="w-6 mr-2" />
-              <span className="truncate">
-                {event.totalRSVPs}/{event.maxCapacity} attending
-              </span>
-            </div>
+          
             <div className="flex item-center">
               <TicketIcon className="w-6 mr-2" />
-              <span className="truncate">1 RSVP per wallet</span>
+              <span className="truncate">1 CLAIM per wallet</span>
             </div>
             <div className="flex items-center">
               <EmojiHappyIcon className="w-10 mr-2" />
               <span className="truncate">
-                Hosted by{" "}
+                Uploaded and validated by{" "}
                 <a
                   className="text-indigo-800 truncate hover:underline"
                   href={`${process.env.NEXT_PUBLIC_TESTNET_EXPLORER_URL}address/${event.eventOwner}`}
