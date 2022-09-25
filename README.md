@@ -1,21 +1,32 @@
-# Web3RSVP-frontend
+<img src="https://www.linkpicture.com/q/WhatsApp-Image-2022-08-21-at-2.50.43-AM.jpeg" alt="W3 Citizens" width="300" />
 
-### Fork and clone the repo from Github to work with it locally
+# Goal W3 Citizens
 
-1. Click the "Fork" button
+Aligned to security, privacy, and integration of data principles for Web3. The user will validate his humanity using the WorldCoin ecosystem, connect his wallet, and add his official credentials this lets him be identified.
 
-2. In your account's forked github repo, click the "Code" button and copy the repo link.
+The data will be stored in the blockchain previously modified by a smart contract to preserve anonymity. If the user requires to be identified in the Web just has to connect its wallet, then if requires to show any credential physically, can generate a QR easily scannable for authorities due the matched of institutional information brought all his registers
 
-3. Open your terminal.
+The ID Wallet stores the hashes same to be consulted and requires the owner’s permission and biometric data to unblock it, besides its consult won’t show more information than required.
 
-4. CD into the repo 
+The wallet lets to get a QR for every ID and easily demonstrate his physically if he required.
 
-5. Install dependencies `npm i`
+## 📄 Tech Stack
 
-6. Run the development server
+- The Graph
+- IPFS (Web3.Storage)
+- RainbowKit
+- Infura
 
-```bash
-npm run dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Quick start
+
+## 🗝 Usage instructions
+
+## 🤓 Advanced setup (custom deployment)
+
+## 🧑‍⚖️ License
+
+This repository is MIT licensed. Please review the LICENSE file in this repository.
+
+Copyright (C) 2022 Tools for Humanity Corporation.
+
